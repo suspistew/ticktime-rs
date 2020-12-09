@@ -1,0 +1,11 @@
+[package]
+name = "ticktime"
+version = "0.0.1"
+authors = ["grzi <jeremy.thulliez@gmail.com>"]
+description = "Provides a ticktime struct to convert a tick to an in game date time"
+documentation = "https://docs.rs/ticktime"
+keywords = ["game", "time", "date"]
+repository = "https://github.com/grzi/ticktime-rs/"
+edition = "2018"
+
+[dependencies]

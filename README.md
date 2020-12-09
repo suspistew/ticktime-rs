@@ -1,2 +1,2 @@
-# basic-game-pack
-A pack of basic features to help you build your game.
+# TickTime-rs
+A basic utilities to convert tick number to a date time. 
