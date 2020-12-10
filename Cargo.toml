@@ -6,6 +6,8 @@ description = "Provides a ticktime struct to convert a tick to an in game date t
 documentation = "https://docs.rs/ticktime"
 keywords = ["game", "time", "date"]
 repository = "https://github.com/grzi/ticktime-rs/"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
 edition = "2018"
 
 [dependencies]

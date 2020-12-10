@@ -8,7 +8,7 @@ mod general_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 1,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -21,7 +21,7 @@ mod general_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 1,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -45,7 +45,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 0,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         );
         assert_eq!(true, tick_time_result.is_err());
@@ -57,7 +57,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 1,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         );
         assert_eq!(true, tick_time_result.is_ok());
@@ -69,7 +69,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 1,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -82,7 +82,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 10,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -98,7 +98,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 10,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -111,7 +111,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 10,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -127,7 +127,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 60,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -144,7 +144,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -156,7 +156,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -172,7 +172,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -184,7 +184,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -200,7 +200,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -212,7 +212,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -228,7 +228,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -240,7 +240,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Lunar,
+                month_type: EarthLikeMonthType::Lunar,
             },
         )
         .unwrap();
@@ -257,7 +257,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Real,
+                month_type: EarthLikeMonthType::Real,
             },
         )
         .unwrap();
@@ -270,7 +270,7 @@ mod earthlike_ticktime_tests {
             0,
             TickTimeType::EarthLike {
                 seconds_per_tick: 3600 * 24,
-                month_type: EarthLikeCalendarMode::Real,
+                month_type: EarthLikeMonthType::Real,
             },
         )
         .unwrap();
@@ -278,5 +278,50 @@ mod earthlike_ticktime_tests {
             tick_time.tick();
         }
         assert_eq!((1, 2, 8, 7, 0, 0, 0), tick_time.values());
+    }
+}
+
+#[cfg(test)]
+mod custom_ticktime_tests{
+    use crate::*;
+
+    #[test]
+    fn custom_ticktime_should_compute_year() {
+        let mut tick_time = TickTime::init(
+            0,
+            TickTimeType::Custom {
+                seconds_per_tick: 3600 * 24,
+                hours_in_a_day: 24,
+                months_durations: vec![1, 1],
+                season_duration: vec![2]
+            }
+        ).unwrap();
+
+        for _ in 0..12 {
+            tick_time.tick();
+        }
+
+        assert_eq!((6, 0, 0, 0, 0, 0, 0), tick_time.values());
+
+    }
+
+    #[test]
+    fn custom_ticktime_should_compute_month() {
+        let mut tick_time = TickTime::init(
+            0,
+            TickTimeType::Custom {
+                seconds_per_tick: 3600 * 24,
+                hours_in_a_day: 24,
+                months_durations: vec![1, 1, 3, 1, 1],
+                season_duration: vec![7]
+            }
+        ).unwrap();
+
+        for _ in 0..12 {
+            tick_time.tick();
+        }
+
+        assert_eq!((1, 0, 3, 0, 0, 0, 0), tick_time.values());
+
     }
 }
