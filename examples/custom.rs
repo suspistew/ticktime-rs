@@ -9,7 +9,8 @@ fn main() {
             seconds_per_tick: 3600,
             hours_in_a_day: 12,
             months_durations: vec![1, 1, 1, 1],
-            season_duration: vec![4]
+            season_duration: vec![4],
+            week_duration: 7
         }
             ).unwrap();
 
@@ -18,7 +19,6 @@ fn main() {
         ticktime.tick();
     }
 
-    println!("Year: {} / Month : {} / Day: {}",
-             ticktime.year(), ticktime.month(), ticktime.day()); // Year 20, Month 0, Day 0
+    println!("{}", ticktime.to_string()); // Year 20, Month 0, Day 0
 
 }

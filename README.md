@@ -18,7 +18,7 @@ It is divided into three main calendar types, an Earthlike lunar calendar, Earth
         ticktime.tick();
     }
 
-    println!("Month : {} / Day: {}", ticktime.month(), ticktime.day()); // Month 1, Day 10
+    println!("{}", ticktime.to_string()); // Month 1, Day 10
 ``` 
 
 ### Earthlike real calendar
@@ -33,7 +33,7 @@ It is divided into three main calendar types, an Earthlike lunar calendar, Earth
         ticktime.tick();
     }
 
-    println!("Month : {} / Day: {}", ticktime.month(), ticktime.day()); // Month 1, Day 9
+    println!("{}", ticktime.to_string()); // Month 1, Day 9
 ``` 
 
 ### Custom calendar
@@ -47,7 +47,8 @@ It is divided into three main calendar types, an Earthlike lunar calendar, Earth
             seconds_per_tick: 3600,
             hours_in_a_day: 12,
             months_durations: vec![1, 1, 1, 1],
-            season_duration: vec![4]
+            season_duration: vec![4],
+            week_duration: 7
         }
             ).unwrap();
 
@@ -56,6 +57,5 @@ It is divided into three main calendar types, an Earthlike lunar calendar, Earth
         ticktime.tick();
     }
 
-    println!("Year: {} / Month : {} / Day: {}",
-                ticktime.year(), ticktime.month(), ticktime.day()); // Year 20, Month 0, Day 0
+    println!("{}", ticktime.to_string()); // Year 20, Month 0, Day 0
 ``` 

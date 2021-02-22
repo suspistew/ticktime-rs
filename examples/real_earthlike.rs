@@ -10,6 +10,6 @@ fn main() {
         ticktime.tick();
     }
 
-    println!("Month : {} / Day: {}", ticktime.month(), ticktime.day()); // Month 1, Day 9
+    println!("{}", ticktime.to_string()); // Month 1, Day 9
 
 }

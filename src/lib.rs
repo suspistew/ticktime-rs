@@ -1,3 +1,6 @@
+use std::fmt;
+use std::fmt::Formatter;
+
 mod lib_tests;
 
 const LUNAR_MONTH_DURATION: usize = 30;
@@ -24,6 +27,8 @@ pub enum TickTimeType {
         months_durations: Vec<usize>,
         /// A list of seasons durations.
         season_duration: Vec<usize>,
+        /// duration of a single week.
+        week_duration: usize,
     },
 }
 
@@ -50,6 +55,8 @@ pub struct TickTime {
     season: usize,
     /// Computed month, according to the tick_time_type
     month: usize,
+    /// Computed week, according to the tick_time_type
+    week: usize,
     /// Computed day, according to the tick_time_type
     day: usize,
     /// Computed hour, according to the tick_time_type
@@ -73,6 +80,7 @@ impl TickTime {
             year: 0,
             season: 0,
             month: 0,
+            week: 0,
             day: 0,
             hour: 0,
             minute: 0,
@@ -154,12 +162,13 @@ impl TickTime {
             self.minute = (total_seconds / 60) % 60;
             self.hour = (total_seconds / 3600) % 24;
             let total_days = total_seconds / 86400;
-            let (day, month, season, year) = match month_type {
+            let (day, week, month, season, year) = match month_type {
                 EarthLikeMonthType::Lunar => compute_lunar_calendar_value(total_days),
                 EarthLikeMonthType::Real => compute_real_calendar_value(total_days)
             };
             self.day = day;
             self.month = month;
+            self.week = week;
             self.season = season;
             self.year = year;
         }
@@ -167,7 +176,7 @@ impl TickTime {
 
     fn compute_custom_date_time_values(&mut self) {
         if let TickTimeType::Custom {
-            seconds_per_tick, hours_in_a_day, months_durations, season_duration
+            seconds_per_tick, hours_in_a_day, months_durations, season_duration, week_duration
         } = &self.tick_time_type
         {
             let total_seconds = self.current_tick * seconds_per_tick;
@@ -176,7 +185,7 @@ impl TickTime {
             self.hour = (total_seconds / 3600) % hours_in_a_day;
             let total_days = total_seconds / 3600 / hours_in_a_day;
             let year_duration: usize = months_durations.iter().sum();
-            let (day, month, season, year) = {
+            let (day, week,  month, season, year) = {
                 let (day, current_year) = (total_days % year_duration, total_days / year_duration);
 
                 let (month, day_of_month) = find_correct_index_and_day_in_section(
@@ -191,9 +200,10 @@ impl TickTime {
                     season_duration,
                 );
 
-                (day_of_month, month, season % 4, current_year)
+                (day_of_month, day / week_duration, month, season % 4, current_year)
             };
             self.day = day;
+            self.week = week;
             self.month = month;
             self.season = season;
             self.year = year;
@@ -201,7 +211,14 @@ impl TickTime {
     }
 }
 
-fn compute_real_calendar_value(total_days: usize) -> (usize, usize, usize, usize) {
+impl fmt::Display for TickTime{
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f, "Tick time: [ Current tick: {}, Year: {}, Season: {}, Week: {} Month: {}, Day: {}, Hour: {}, Minute: {}, Second: {}]",
+               self.current_tick, self.year, self.season, self.week, self.month, self.day, self.hour, self.minute, self.second)
+    }
+}
+
+fn compute_real_calendar_value(total_days: usize) -> (usize, usize, usize, usize, usize) {
     let (day, current_year, is_leap_year) =
         normalize_total_day_to_year_information(total_days);
 
@@ -217,12 +234,13 @@ fn compute_real_calendar_value(total_days: usize) -> (usize, usize, usize, usize
         &get_season_duration(is_leap_year),
     );
 
-    (day_of_month, month, season % 4, current_year)
+    (day_of_month, day / 7, month, season % 4, current_year)
 }
 
-fn compute_lunar_calendar_value(total_days: usize) -> (usize, usize, usize, usize) {
+fn compute_lunar_calendar_value(total_days: usize) -> (usize, usize, usize, usize, usize) {
     (
         total_days % LUNAR_YEAR_DURATION % LUNAR_MONTH_DURATION,
+        total_days % LUNAR_YEAR_DURATION / 7,
         total_days % LUNAR_YEAR_DURATION / LUNAR_MONTH_DURATION,
         (total_days % LUNAR_YEAR_DURATION) / (LUNAR_YEAR_DURATION / 4),
         total_days / LUNAR_YEAR_DURATION,
@@ -247,7 +265,7 @@ fn verify_tick_time_type_values(tick_time_type: &TickTimeType) -> Result<(), &'s
             }
         },
         TickTimeType::Custom {
-            seconds_per_tick, hours_in_a_day: _, months_durations, season_duration
+            seconds_per_tick, hours_in_a_day: _, months_durations, season_duration, ..
         } => {
             if *seconds_per_tick == 0 {
                 return Err("The minimum value for Custom::seconds_per_tick is 1");
