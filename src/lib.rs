@@ -28,7 +28,7 @@ pub enum TickTimeType {
         /// A list of month durations.
         months_durations: Vec<usize>,
         /// A list of seasons durations.
-        season_duration: Vec<usize>,
+        seasons_durations: Vec<usize>,
         /// duration of a single week.
         week_duration: usize,
     },
@@ -252,7 +252,7 @@ impl TickTime {
 
     fn compute_custom_date_time_values(&mut self) {
         if let TickTimeType::Custom {
-            seconds_per_tick, hours_in_a_day, months_durations, season_duration, week_duration
+            seconds_per_tick, hours_in_a_day, months_durations, seasons_durations, week_duration
         } = &self.options.tick_time_type
         {
             let total_seconds = self.current_tick * seconds_per_tick;
@@ -272,8 +272,8 @@ impl TickTime {
 
                 let (season, _) = find_correct_index_and_day_in_section(
                     day,
-                    season_duration.len(),
-                    season_duration,
+                    seasons_durations.len(),
+                    seasons_durations,
                 );
 
                 (day_of_month, day / week_duration, month, season % 4, current_year)
@@ -341,12 +341,12 @@ fn verify_tick_time_type_values(tick_time_type: &TickTimeType) -> Result<(), &'s
             }
         }
         TickTimeType::Custom {
-            seconds_per_tick, hours_in_a_day: _, months_durations, season_duration, ..
+            seconds_per_tick, hours_in_a_day: _, months_durations, seasons_durations, ..
         } => {
             if *seconds_per_tick == 0 {
                 return Err("The minimum value for Custom::seconds_per_tick is 1");
             }
-            if months_durations.iter().sum::<usize>() != season_duration.iter().sum::<usize>() {
+            if months_durations.iter().sum::<usize>() != seasons_durations.iter().sum::<usize>() {
                 return Err("The sum of values of Custom::months_durations and Custom::season_duration should be the same to keep consistent");
             }
         }

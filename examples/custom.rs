@@ -11,7 +11,7 @@ fn main() {
                 seconds_per_tick: 3600,
                 hours_in_a_day: 12,
                 months_durations: vec![1, 1, 1, 1],
-                season_duration: vec![4],
+                seasons_durations: vec![4],
                 week_duration: 7,
             },
             compute_events: false,
