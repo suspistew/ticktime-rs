@@ -1,12 +1,18 @@
 # TickTime-rs
-A basic utilities to convert tick number to a date time to use in game. 
-It was first made to fulfill the need of city building games.
+A utilities to convert tick number to a date time to use in game. 
+It was first made to fulfill the need of city building games but can also be used in any game that needs date time handled from ticks.
 
-It is divided into three main calendar types, an Earthlike lunar calendar, Earthlike real calendar and Custom calendar where you decide the value of each units. 
+## Features
+
+- **Configurable calendar:**
+  - *Earth-like real calendar:* Computed time will be done following the real earth calendar rules
+  - *Earth-like lunar calendar:* Computed time will be done with a lunar calendar of 12 months of 30 days  
+  - *Custom calendar:* Computed time will be be done by using custom unit time given at init. 
+- **Update event:** Each tick will compute the time and, if enabled, will return an event with all the fields updated. 
 
 ## Examples 
 
-### Earthlike lunar calendar
+### Earth-like lunar calendar
 
 ```rust
     // Initialize a lunar ticktime where one tick is 3600 seconds
@@ -21,7 +27,7 @@ It is divided into three main calendar types, an Earthlike lunar calendar, Earth
     println!("{}", ticktime.to_string()); // Month 1, Day 10
 ``` 
 
-### Earthlike real calendar
+### Earth-like real calendar
 
 ```rust
     // Initialize a real ticktime where one tick is 3600 seconds
@@ -59,3 +65,9 @@ It is divided into three main calendar types, an Earthlike lunar calendar, Earth
 
     println!("{}", ticktime.to_string()); // Year 20, Month 0, Day 0
 ``` 
+
+See the examples for more use cases.
+
+# Contributing
+
+As in any OS project, contributions are welcome. Issues or PR. Please check [the issues](https://github.com/grzi/ticktime-rs/issues)  to know if you can get involved in existing demands.
