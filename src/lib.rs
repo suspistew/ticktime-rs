@@ -116,10 +116,11 @@ impl TickTime {
     }
 
     /// Return a tuple of computed usizes for (year, season, month, day, hour, minute, second)
-    pub fn values(&self) -> (usize, usize, usize, usize, usize, usize, usize) {
+    pub fn values(&self) -> (usize, usize, usize, usize, usize, usize, usize, usize) {
         (
             self.values.year,
             self.values.season,
+            self.values.week,
             self.values.month,
             self.values.day,
             self.values.hour,

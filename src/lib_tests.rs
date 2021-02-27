@@ -15,7 +15,7 @@ mod general_ticktime_tests {
             },
         )
             .unwrap();
-        assert_eq!((0, 0, 0, 0, 0, 0, 0), tick_time.values());
+        assert_eq!((0, 0, 0, 0, 0, 0, 0, 0), tick_time.values());
     }
 
     #[test]
@@ -97,7 +97,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..10 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 0, 0, 0, 0, 10), tick_time.values());
+        assert_eq!((0, 0, 0, 0, 0, 0, 0, 10), tick_time.values());
 
         let mut tick_time = TickTime::init(
             0,
@@ -114,7 +114,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..4 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 0, 0, 0, 0, 40), tick_time.values());
+        assert_eq!((0, 0, 0,0, 0, 0, 0, 40), tick_time.values());
     }
 
     #[test]
@@ -134,7 +134,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..10 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 0, 0, 0, 1, 40), tick_time.values());
+        assert_eq!((0, 0, 0, 0, 0, 0, 1, 40), tick_time.values());
 
         let mut tick_time = TickTime::init(
             0,
@@ -151,7 +151,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..20 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 0, 0, 0, 3, 20), tick_time.values());
+        assert_eq!((0, 0, 0, 0, 0, 0, 3, 20), tick_time.values());
     }
 
     #[test]
@@ -171,7 +171,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..61 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 0, 0, 1, 1, 0), tick_time.values());
+        assert_eq!((0, 0, 0, 0, 0, 1, 1, 0), tick_time.values());
     }
 
     // Lunar Month type tests
@@ -192,7 +192,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..25 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 0, 1, 1, 0, 0), tick_time.values());
+        assert_eq!((0, 0, 0, 0, 1, 1, 0, 0), tick_time.values());
         let mut tick_time = TickTime::init(
             0,
             TickTimeOptions {
@@ -208,7 +208,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..50 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 0, 2, 2, 0, 0), tick_time.values());
+        assert_eq!((0, 0, 0, 0, 2, 2, 0, 0), tick_time.values());
     }
 
     #[test]
@@ -228,7 +228,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..31 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 1, 1, 0, 0, 0), tick_time.values());
+        assert_eq!((0, 0, 4, 1, 1, 0, 0, 0), tick_time.values());
         let mut tick_time = TickTime::init(
             0,
             TickTimeOptions {
@@ -244,7 +244,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..61 {
             tick_time.tick();
         }
-        assert_eq!((0, 0, 2, 1, 0, 0, 0), tick_time.values());
+        assert_eq!((0, 0, 8, 2, 1, 0, 0, 0), tick_time.values());
     }
 
     #[test]
@@ -264,7 +264,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..91 {
             tick_time.tick();
         }
-        assert_eq!((0, 1, 3, 1, 0, 0, 0), tick_time.values());
+        assert_eq!((0, 1, 13, 3, 1, 0, 0, 0), tick_time.values());
         let mut tick_time = TickTime::init(
             0,
             TickTimeOptions {
@@ -280,7 +280,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..181 {
             tick_time.tick();
         }
-        assert_eq!((0, 2, 6, 1, 0, 0, 0), tick_time.values());
+        assert_eq!((0, 2, 25, 6, 1, 0, 0, 0), tick_time.values());
     }
 
     #[test]
@@ -300,7 +300,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..360 {
             tick_time.tick();
         }
-        assert_eq!((1, 0, 0, 0, 0, 0, 0), tick_time.values());
+        assert_eq!((1, 0, 0,0,  0, 0, 0, 0), tick_time.values());
         let mut tick_time = TickTime::init(
             0,
             TickTimeOptions {
@@ -316,7 +316,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..720 {
             tick_time.tick();
         }
-        assert_eq!((2, 0, 0, 0, 0, 0, 0), tick_time.values());
+        assert_eq!((2, 0, 0, 0, 0, 0, 0, 0), tick_time.values());
     }
 
     // Real month type tests
@@ -337,7 +337,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..250 {
             tick_time.tick();
         }
-        assert_eq!((0, 2, 8, 6, 0, 0, 0), tick_time.values());
+        assert_eq!((0, 2, 35, 8, 6, 0, 0, 0), tick_time.values());
 
         let mut tick_time = TickTime::init(
             0,
@@ -354,7 +354,7 @@ mod earthlike_ticktime_tests {
         for _ in 0..(366 + 250) {
             tick_time.tick();
         }
-        assert_eq!((1, 2, 8, 7, 0, 0, 0), tick_time.values());
+        assert_eq!((1, 2, 35, 8, 7, 0, 0, 0), tick_time.values());
     }
 }
 
@@ -383,7 +383,7 @@ mod custom_ticktime_tests {
             tick_time.tick();
         }
 
-        assert_eq!((6, 0, 0, 0, 0, 0, 0), tick_time.values());
+        assert_eq!((6, 0, 0, 0, 0, 0, 0, 0), tick_time.values());
     }
 
     #[test]
@@ -407,17 +407,12 @@ mod custom_ticktime_tests {
             tick_time.tick();
         }
 
-        assert_eq!((1, 0, 3, 0, 0, 0, 0), tick_time.values());
+        assert_eq!((1, 0, 0, 3, 0, 0, 0, 0), tick_time.values());
     }
 }
 
 #[cfg(test)]
 mod event_tests {
-
-
-    // 2: Should return an empty event if nothing changed
-    // 3: Should return second updated etc... if enabled
-    // 4: Should return old/new value with the right value
 
     use crate::*;
 
