@@ -17,7 +17,11 @@ It was first made to fulfill the need of city building games but can also be use
 ```rust
     // Initialize a lunar ticktime where one tick is 3600 seconds
     let mut ticktime = TickTime::init(
-        0,TickTimeType::EarthLike { seconds_per_tick: 3600, month_type: EarthLikeMonthType::Lunar }).unwrap();
+        0, TickTimeOptions {
+            tick_time_type: TickTimeType::EarthLike { seconds_per_tick: 3600, month_type: EarthLikeMonthType::Lunar },
+            compute_events: false,
+        }
+    ).unwrap();
 
     // Calling tick to simulate 40 days
     for _ in 0..(24*40) {
@@ -32,7 +36,11 @@ It was first made to fulfill the need of city building games but can also be use
 ```rust
     // Initialize a real ticktime where one tick is 3600 seconds
     let mut ticktime = TickTime::init(
-        0,TickTimeType::EarthLike { seconds_per_tick: 3600, month_type: EarthLikeMonthType::Real }).unwrap();
+        0, TickTimeOptions {
+            tick_time_type: TickTimeType::EarthLike { seconds_per_tick: 3600, month_type: EarthLikeMonthType::Real },
+            compute_events: false,
+            }
+        ).unwrap();
 
     // Calling tick to simulate 40 days
     for _ in 0..(24*40) {
@@ -49,14 +57,18 @@ It was first made to fulfill the need of city building games but can also be use
     // where each day is 12 hours long
     // and year are composed of 4 months with 1 day
     let mut ticktime = TickTime::init(
-        0,TickTimeType::Custom {
+        0, TickTimeOptions {
+            tick_time_type:
+            TickTimeType::Custom {
             seconds_per_tick: 3600,
             hours_in_a_day: 12,
             months_durations: vec![1, 1, 1, 1],
-            season_duration: vec![4],
-            week_duration: 7
-        }
-            ).unwrap();
+            seasons_durations: vec![4],
+            week_duration: 7,
+        },
+        compute_events: false,
+        },
+    ).unwrap();
 
     // Calling tick to simulate 40 days
     for _ in 0..(24*40) {
